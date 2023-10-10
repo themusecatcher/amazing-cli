@@ -5,45 +5,40 @@
 ```bash
 # mac要加sudo
 npm install -g amazing-cli
+# or
+yarn add amazing-cli -g
 ```
 
-## or yarn
+## 使用
+
+### 创建模版
 
 ```bash
-yarn global add amazing-cli
+amazing-cli create <project-name> [-t|--template]
 ```
 
-### 使用
-
-创建模版
+### 删除指定目录
 
 ```bash
-amazing-cli create <name> [-t|--template]
+amazing-cli delete <projectDir>
 ```
 
-示例
+### 拉取远程项目到当前项目分支
 
 ```bash
-amazing-cli create helloProject -t demoProject
+amazing-cli pull
 ```
 
-### 不全局安装，借助npx
+## 使用npx
 
-创建模版
+### 创建模版
 
 ```bash
 npx amazing-cli create <name> [-t|--template]
 ```
 
-示例
+### 示例
 
 ```bash
 npx amazing-cli create helloProject -template demoProject
-```
-
-### 项目发布到npm
-
-```bash
-# 要求登录npm账号密码
-npm publish
 ```
