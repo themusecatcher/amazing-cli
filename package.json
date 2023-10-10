@@ -1,14 +1,13 @@
 {
   "name": "amazing-cli",
   "version": "1.0.0",
-  "main": "index.js",
   "bin": {
     "amazing-cli": "bin/cli.js"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "keywords": [
+    "amazing",
+    "cli"
+  ],
   "author": "The Muse Catcher",
   "license": "ISC",
   "dependencies": {
@@ -24,5 +23,5 @@
     "ora": "^5.4.1",
     "promisify": "^0.0.3"
   },
-  "description": ""
+  "description": "An amazing front-end project scaffolding tool."
 }
