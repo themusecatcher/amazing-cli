@@ -15,10 +15,12 @@ yarn add amazing-cli -g
 ### Create Template
 
 ```bash
+amazing-cli create
+# or
 amazing-cli create <project-name> [-t|--template]
 ```
 
-### Delete specified directory 
+### Delete specified directory
 
 ```bash
 amazing-cli delete <projectDir>
@@ -35,6 +37,8 @@ amazing-cli pull
 ### Create Template
 
 ```bash
+npx amazing-cli create
+# or
 npx amazing-cli create <name> [-t|--template]
 ```
 
