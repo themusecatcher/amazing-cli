@@ -4,6 +4,9 @@
   "bin": {
     "amazing-cli": "bin/cli.js"
   },
+  "scripts": {
+    "pub": "sh publish.sh"
+  },
   "keywords": [
     "amazing",
     "cli"
