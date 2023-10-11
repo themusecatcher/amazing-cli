@@ -3,6 +3,8 @@
 ## Install
 
 ```bash
+pnpm i -g amazing-cli
+# or
 npm install -g amazing-cli
 # or
 yarn add amazing-cli -g
