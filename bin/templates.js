@@ -1,5 +1,5 @@
 // 预置模版选项
-module.exports = [
+export const templates = [
   {
     name: 'naive-ui-admin',
     value: 'git@github.com:jekip/naive-ui-admin.git'

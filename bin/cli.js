@@ -1,24 +1,26 @@
 #! /usr/bin/env node
-const program = require('commander')
-const inquirer = require('inquirer')
-const chalk = require('chalk') // 控制台输出内容样式美化
-const templates = require('./templates.js')
-const package = require('../package.json')
-const gitPullOrClone = require('git-pull-or-clone')
-const path = require('path')
-const fs = require('fs-extra') // 引入fs-extra
-const ora = require('ora') // 引入ora
+import { Command } from 'commander' // 命令行自定义指令
+const program = new Command()
+import ora from 'ora' // 控制台 loading 样式
+import inquirer from 'inquirer' // 命令行询问用户问题，记录回答结果
+import chalk from 'chalk' // 控制台输出内容样式美化
+import figlet from 'figlet' // 控制台打印 logo
+import gitPullOrClone from 'git-pull-or-clone'
+import path from 'path'
+import fs from 'fs-extra' // 引入fs-extra
+import { templates } from './templates.js'
 // git命令函数
-const { executeGitCommand } = require('./gitUtil.js')
-const { promisify } = require('util')
-const figlet = promisify(require('figlet'))
+import { executeGitCommand } from './gitUtil.js'
 const fontOptions = {
   horizontalLayout: 'full', // 'default', 'full', 'fitted', 'controlled smushing', 'universal smushing'.
   verticalLayout: 'full', // 'default', 'full', 'fitted', 'controlled smushing', 'universal smushing'.
   width: 80,
   whitespaceBreak: true
 }
-console.log(chalk.cyan(figlet.textSync('Amazing CLI', fontOptions)))
+// check version
+const logo = chalk.cyan(figlet.textSync('Amazing CLI', fontOptions))
+import packageInfo from '../package.json' assert { type: 'json' }
+program.version(`${logo}\n${packageInfo.version}`,  '-V, --version', 'output the current version')
 // create project
 program
   .command('create [projectName]')
@@ -34,7 +36,7 @@ program
         type: 'input',
         name: 'name',
         message: 'Project name:',
-        default: 'vue-project',
+        default: 'vue-project'
       })
       projectName = name // 赋值输入的项目名称
     }
@@ -54,7 +56,7 @@ program
       const { force } = await inquirer.prompt({
         type: 'confirm',
         name: 'force',
-        message: `Target directory "${projectName}" is not empty. Remove existing files and continue?`,
+        message: `Target directory "${projectName}" is not empty. Remove existing files and continue?`
       })
       // 如果覆盖就删除文件夹继续往下执行，否的话就退出进程
       force ? fs.removeSync(dest) : process.exit(1)
@@ -89,7 +91,7 @@ program
       const { force } = await inquirer.prompt({
         type: 'confirm',
         name: 'force',
-        message: `Are you sure you want to delete the "${chalk.green.bold(projectName)}" directory？`,
+        message: `Are you sure you want to delete the "${chalk.green.bold(projectName)}" directory？`
       })
       // 如果覆盖就删除文件夹继续往下执行，否的话就退出进程
       force ? fs.removeSync(dest) : process.exit(1)
@@ -176,23 +178,23 @@ const deleteTemplateBranch = (templateLink, currentBranch, templateBranch, gitLo
             console.error(err) // 打印错误信息
           }).finally(() => {
             // 创建并切换分支
-            createPullFunc({ template, templateLink, currentBranch, templateBranch }, gitLoading)
+            createPullFunc({ template, templateLink, templateBranch }, gitLoading)
           })
         } else {
           gitLoading.warn(`remote branch ${chalk.green.bold(template)} does not exist 😎😎😎`)
           // 创建并切换分支
-          createPullFunc({ template, templateLink, currentBranch, templateBranch }, gitLoading)
+          createPullFunc({ template, templateLink, templateBranch }, gitLoading)
         }
       })
     } else {
       gitLoading.warn(`local branch ${chalk.green.bold(template)} does not exist 😎😎😎`)
       // 创建并切换分支
-      createPullFunc({ template, templateLink, currentBranch, templateBranch }, gitLoading)
+      createPullFunc({ template, templateLink, templateBranch }, gitLoading)
     }
   })
 }
 const createPullFunc = (params, gitLoading) => {
-  const { template, templateLink, currentBranch, templateBranch } = params
+  const { template, templateLink, templateBranch } = params
   // 创建并切换到分支
   executeGitCommand(`git checkout -b ${template}`).then(() => {
     gitLoading.succeed(`成功创建分支: ${chalk.green.bold(template)} 😝😝😝`)
@@ -238,8 +240,5 @@ const createPullFunc = (params, gitLoading) => {
   })
   gitLoading.stop()
 }
-
-// 定义当前版本
-program.version(`v${package.version}`)
 program.on('--help', () => {}) // 添加--help
 program.parse(process.argv)

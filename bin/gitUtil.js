@@ -1,6 +1,6 @@
-const { exec } = require('child_process')
+import { exec } from 'child_process'
 // 执行 Git 命令的函数
-const executeGitCommand = (command) =>{
+export const executeGitCommand = (command) =>{
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
       if (error) {
@@ -11,5 +11,3 @@ const executeGitCommand = (command) =>{
     })
   })
 }
-
-module.exports = { executeGitCommand }
