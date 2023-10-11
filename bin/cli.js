@@ -47,9 +47,8 @@ program
         message: 'Template name:',
         choices: templates // 模版列表
       })
-      projectTemplate = template // 赋值选择的项目名称
+      projectTemplate = template // 赋值选择的项目对应的地址
     }
-
     const dest = path.join(process.cwd(), projectName)
     // 判断文件夹是否存在，存在就交互询问用户是否覆盖
     if (fs.existsSync(dest)) {
