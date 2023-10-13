@@ -23,7 +23,7 @@ amazing-cli create <project-name> [-t|--template]
 ### Delete specified directory
 
 ```bash
-amazing-cli delete <projectDir>
+amazing-cli delete <project-dir>
 ```
 
 ### Pull the remote project into the current project branch
@@ -45,5 +45,5 @@ npx amazing-cli create <name> [-t|--template]
 ### example
 
 ```bash
-npx amazing-cli create helloProject -template demoProject
+npx amazing-cli create vue-project -template template-project
 ```
