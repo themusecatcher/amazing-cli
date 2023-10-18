@@ -1,6 +1,6 @@
 # Amazing Cli
 
-## Install
+## Global Install
 
 ```bash
 pnpm i -g amazing-cli
@@ -12,18 +12,16 @@ yarn add amazing-cli -g
 
 ## Use
 
-### Create Template
+### Create project
 
 ```bash
 amazing-cli create
-# or
-amazing-cli create <project-name> [-t|--template]
 ```
 
 ### Delete specified directory
 
 ```bash
-amazing-cli delete <project-dir>
+amazing-cli delete <file-directory>
 ```
 
 ### Pull the remote project into the current project branch
@@ -32,17 +30,17 @@ amazing-cli delete <project-dir>
 amazing-cli pull
 ```
 
-## Use npx
+## Use Npx
 
-### Create Template
+### Create Project
 
 ```bash
 npx amazing-cli create
 # or
-npx amazing-cli create <name> [-t|--template]
+npx amazing-cli create <project-name> [-t|--template] <template-name>
 ```
 
-### example
+### Example
 
 ```bash
 npx amazing-cli create vue-project -template template-project
